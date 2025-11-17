@@ -9,3 +9,11 @@ This folder contains SQL scripts demonstrating INNER JOIN, LEFT JOIN, and FULL O
   - INNER JOIN → bookings + users  
   - LEFT JOIN → properties + reviews  
   - FULL OUTER JOIN → users + bookings  
+# Task 1: Practice Subqueries
+
+This directory contains SQL queries that demonstrate:
+- A non-correlated subquery to find properties with an average rating above 4.0.
+- A correlated subquery to find users who have made more than 3 bookings.
+
+File included:
+- subqueries.sql

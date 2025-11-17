@@ -17,3 +17,12 @@ This directory contains SQL queries that demonstrate:
 
 File included:
 - subqueries.sql
+- # Task 2: Aggregations and Window Functions
+
+This task demonstrates:
+- Aggregations using COUNT and GROUP BY to compute total bookings per user.
+- Window functions (RANK) to rank properties based on total bookings.
+
+File included:
+- aggregations_and_window_functions.sql
+

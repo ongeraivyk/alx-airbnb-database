@@ -1,43 +1,53 @@
--- =========================================
--- TASK 0: COMPLEX JOIN QUERIES
--- =========================================
+-- Task 0: SQL Joins
 
--- 0.1 INNER JOIN
--- Retrieve all bookings and the users who made those bookings
-SELECT 
-    b.booking_id,
-    b.property_id,
-    b.check_in_date,
-    b.check_out_date,
-    u.user_id,
-    u.name,
-    u.email
-FROM bookings b
-INNER JOIN users u 
-    ON b.user_id = u.user_id;
+/* ----------------------------------------------
+1. INNER JOIN:
+Retrieve all bookings and the respective users
+who made those bookings.
+---------------------------------------------- */
+SELECT
+    bookings.id AS booking_id,
+    bookings.property_id,
+    bookings.start_date,
+    bookings.end_date,
+    users.id AS user_id,
+    users.name AS user_name,
+    users.email
+FROM bookings
+INNER JOIN users
+    ON bookings.user_id = users.id
+ORDER BY bookings.id;
 
--- 0.2 LEFT JOIN
--- Retrieve all properties and their reviews (even properties with no review)
-SELECT 
-    p.property_id,
-    p.title,
-    p.location,
-    r.review_id,
-    r.rating,
-    r.comment
-FROM properties p
-LEFT JOIN reviews r 
-    ON p.property_id = r.property_id;
 
--- 0.3 FULL OUTER JOIN
--- Retrieve all users and all bookings 
--- even if a user has no bookings or a booking is not linked to a user
-SELECT 
-    u.user_id,
-    u.name,
-    b.booking_id,
-    b.property_id,
-    b.check_in_date
-FROM users u
-FULL OUTER JOIN bookings b
-    ON u.user_id = b.user_id;
+/* ----------------------------------------------
+2. LEFT JOIN:
+Retrieve all properties and their reviews,
+including properties that have NO reviews.
+---------------------------------------------- */
+SELECT
+    properties.id AS property_id,
+    properties.name AS property_name,
+    reviews.id AS review_id,
+    reviews.rating,
+    reviews.comment
+FROM properties
+LEFT JOIN reviews
+    ON properties.id = reviews.property_id
+ORDER BY properties.id;
+
+
+/* ----------------------------------------------
+3. FULL OUTER JOIN:
+Retrieve ALL users and ALL bookings,
+including users with NO bookings and
+bookings NOT linked to a user.
+---------------------------------------------- */
+SELECT
+    users.id AS user_id,
+    users.name,
+    bookings.id AS booking_id,
+    bookings.property_id
+FROM users
+FULL OUTER JOIN bookings
+    ON users.id = bookings.user_id
+ORDER BY users.id;
